@@ -149,4 +149,9 @@ public class Game {
 			System.out.println("\n =============================== \n");
 		}
 	}
+
+	public void showScore() {
+		System.out.println(player1.name + " : " + player1.getStack().size() + " points");
+		System.out.println(player2.name + " : " + player2.getStack().size() + " points");
+	}
 }
