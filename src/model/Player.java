@@ -7,19 +7,7 @@ public class Player {
     Stack<Card> stack;
     Card frontCard;
 
-
-    public Player(){
-        super();
-        this.name = "UnNamed Player";
-    }
-
-    public Player(String name){
-        super();
-        this.name = name;
-        stack = new Stack<Card>();
-        }
-
-
+    //Getters & Setters
     public String getName() {
         return name;
     }
@@ -32,34 +20,28 @@ public class Player {
         return stack;
     }
 
-    public void setStack(Stack<Card> stack) {
-        this.stack = stack;
-    }
-
     public Card getFrontCard() {
         return frontCard;
     }
 
-    public void setFrontCard(Card frontCard) {
-        this.frontCard = frontCard;
+    //Constructors
+    public Player(){
+        super();
+        this.name = "UnNamed Player";
     }
 
-    public BattleState getState() {
-        return state;
-    }
+    public Player(String name){
+        super();
+        this.name = name;
+        stack = new Stack<Card>();
+        }
 
-    public void setState(BattleState state) {
-        this.state = state;
-    }
-
-
+    //Methods & Functions
     public void play(){
         this.frontCard = this.stack.pop();
     }
 
-    public void receive(Stack<Card> cards){
-        for(Card card : cards) {
-            this.stack.push(cards.pop());
-        }
+    public void receive(Card card){
+        this.stack.push(card);
     }
 }
