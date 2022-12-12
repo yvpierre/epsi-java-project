@@ -11,6 +11,7 @@ public class Game {
 	private Player player1;
 	private Player player2;
 	private BattleState state;
+	private boolean isFinished = false;
 	private static String _PLAYER1_DEFAULT_NAME = "Player 1";
 	private static String _PLAYER2_DEFAULT_NAME = "Player 2";
 
@@ -54,7 +55,7 @@ public class Game {
 	private void draw() {
 		// The cards are shuffled
 		shuffle();
-		
+
 		int index = (int) cards.size() / 2;
 
 		// 32 cards for both players
@@ -75,78 +76,87 @@ public class Game {
 		cards.clear();
 		//put the list elements in the queue
 		cards.addAll(arrayListCards);
-		
+
 	}
 
 	public void play() {
-		// The players take a card in their Queue
-		player1.play();
-		player2.play();
-		System.out.println(player1.name + " : " + player1.getFrontCard());
-		System.out.println(player2.name + " : " + player2.getFrontCard());
-
-		// Player cards are put in the pot
-		cards.offer(player1.getFrontCard());
-		cards.offer(player2.getFrontCard());
-
-		// If the last round was a draw we show a reveal countdown
-		if (state == BattleState.DRAW) {
-			try {
-				System.out.println("Cards revealed in : ");
-				Thread.sleep(1000);
-				System.out.println("3");
-				Thread.sleep(1000);
-				System.out.println("2");
-				Thread.sleep(1000);
-				System.out.println("1");
-				Thread.sleep(1000);
-			} catch (Exception e) {
-				System.out.println("Countdown interrupted");
-			}
+		//Check if the players have cards
+		if(player1.getStack().size() <= 0 || player2.getStack().size() <= 0 ) {
+			this.isFinished = true;
 		}
-
-		// If the cards value are equal
-		if (player1.getFrontCard().getFace().value == player2.getFrontCard().getFace().value) {
-			this.state = BattleState.DRAW;
-			System.out.println(state.toString() + " : Battle !");
-			System.out.println(this.player1.getFrontCard() + " and " + this.player2.getFrontCard()
-					+ " will be won in the next round");
-			this.play();
-		}
-
-		// If the cards aren't equal
+		if(isFinished) {
+			System.out.println("The game is you can't play anymore");
+		} 
 		else {
-			// The player 1 has a better card
-			if (player1.getFrontCard().getFace().value > player2.getFrontCard().getFace().value) {
-				System.out.println("\n" + this.player1.getName() + " WON !");
+			// The players take a card in their Queue
+			player1.play();
+			player2.play();
+			System.out.println(player1.name + " : " + player1.getFrontCard());
+			System.out.println(player2.name + " : " + player2.getFrontCard());
 
-				int max = cards.size();
+			// Player cards are put in the pot
+			cards.offer(player1.getFrontCard());
+			cards.offer(player2.getFrontCard());
 
-				// For each card in the pot we write a message
-				for (int i = 0; i < max; i++) {
-					Card cardWon = cards.poll();
-					System.out.println(this.player1.getName() + " gets : " + cardWon.toString());
-					player1.receive(cardWon);
+			// If the last round was a draw we show a reveal countdown
+			if (state == BattleState.DRAW) {
+				try {
+					System.out.println("Cards revealed in : ");
+					Thread.sleep(1000);
+					System.out.println("3");
+					Thread.sleep(1000);
+					System.out.println("2");
+					Thread.sleep(1000);
+					System.out.println("1");
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					System.out.println("Countdown interrupted");
 				}
-
-				this.state = BattleState.DONE;
 			}
-			// he player 2 has a better card
+
+			// If the cards value are equal
+			if (player1.getFrontCard().getFace().value == player2.getFrontCard().getFace().value) {
+				this.state = BattleState.DRAW;
+				System.out.println(state.toString() + " : Battle !");
+				System.out.println(this.player1.getFrontCard() + " and " + this.player2.getFrontCard()
+				+ " will be won in the next round");
+				this.play();
+			}
+
+			// If the cards aren't equal
 			else {
-				System.out.println("\n" + this.player2.getName() + " WON !");
+				// The player 1 has a better card
+				if (player1.getFrontCard().getFace().value > player2.getFrontCard().getFace().value) {
+					System.out.println("\n" + this.player1.getName() + " WON !");
 
-				int max = cards.size();
+					int max = cards.size();
 
-				// For each card in the pot we write a message
-				for (int i = 0; i < max; i++) {
-					Card cardWon = cards.poll();;
-					System.out.println(this.player2.getName() + " gets : " + cardWon.toString());
-					player2.receive(cardWon);
+					// For each card in the pot we write a message
+					for (int i = 0; i < max; i++) {
+						Card cardWon = cards.poll();
+						System.out.println(this.player1.getName() + " gets : " + cardWon.toString());
+						player1.receive(cardWon);
+					}
+
+					this.state = BattleState.DONE;
 				}
+				// he player 2 has a better card
+				else {
+					System.out.println("\n" + this.player2.getName() + " WON !");
 
-				this.state = BattleState.DONE;
+					int max = cards.size();
+
+					// For each card in the pot we write a message
+					for (int i = 0; i < max; i++) {
+						Card cardWon = cards.poll();;
+						System.out.println(this.player2.getName() + " gets : " + cardWon.toString());
+						player2.receive(cardWon);
+					}
+
+					this.state = BattleState.DONE;
+				}
+				System.out.println("\n =============================== \n");
 			}
-			System.out.println("\n =============================== \n");
 		}
 	}
 
