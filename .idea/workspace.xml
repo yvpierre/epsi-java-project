@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6aebf0b6-6e8e-48eb-99e5-13575414647d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/BattleState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/CardStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/CardStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +29,15 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/model/Face.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/Card.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/BattleState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/Player.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/Game.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/CardStack.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/Color.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2HJ0RficaZUXOlSnzAgMdVsDO7c" />
   <component name="ProjectViewState">
@@ -58,7 +65,7 @@
       <updated>1667987873131</updated>
       <workItem from="1667987874830" duration="3666000" />
       <workItem from="1669710056091" duration="2233000" />
-      <workItem from="1670866865662" duration="625000" />
+      <workItem from="1670866865662" duration="1923000" />
     </task>
     <servers />
   </component>

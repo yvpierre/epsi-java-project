@@ -1,12 +1,11 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Player {
     String name;
-    CardStack stack;
+    Stack<Card> stack;
     Card frontCard;
-    BattleState state;
 
 
     public Player(){
@@ -17,8 +16,8 @@ public class Player {
     public Player(String name){
         super();
         this.name = name;
-        stack = new CardStack();
-    }
+        stack = new Stack<Card>();
+        }
 
 
     public String getName() {
@@ -29,11 +28,11 @@ public class Player {
         this.name = name;
     }
 
-    public CardStack getStack() {
+    public Stack<Card> getStack() {
         return stack;
     }
 
-    public void setStack(CardStack stack) {
+    public void setStack(Stack<Card> stack) {
         this.stack = stack;
     }
 
@@ -55,12 +54,12 @@ public class Player {
 
 
     public void play(){
-        this.frontCard = this.stack.getCard();
+        this.frontCard = this.stack.pop();
     }
 
-    public void receive(ArrayList<Card> cards){
+    public void receive(Stack<Card> cards){
         for(Card card : cards) {
-            this.stack.add(card);
+            this.stack.push(cards.pop());
         }
     }
 }
