@@ -1,11 +1,15 @@
 package main;
 
 import model.Game;
+import model.Player;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Game game = new Game();
+		Player pablo = new Player("Pablo");
+		Player pierre = new Player("Pierre");
+		Game game = new Game(pablo, pierre);
+		
 		game.start();
 		try {
 		Thread.sleep(2000);
@@ -24,5 +28,6 @@ public class Main {
 		catch(Exception e){
 			System.out.println("thread interrupted");
 		}
+		
 	}
 }

@@ -120,7 +120,7 @@ public class Game {
 			if (player1.getFrontCard().getFace().value > player2.getFrontCard().getFace().value) {
 				System.out.println("\n" + this.player1.getName() + " WON !");
 
-				int max = cards.size() - 1;
+				int max = cards.size();
 
 				// For each card in the pot we write a message
 				for (int i = 0; i < max; i++) {
@@ -135,7 +135,7 @@ public class Game {
 			else {
 				System.out.println("\n" + this.player2.getName() + " WON !");
 
-				int max = cards.size() - 1;
+				int max = cards.size();
 
 				// For each card in the pot we write a message
 				for (int i = 0; i < max; i++) {
