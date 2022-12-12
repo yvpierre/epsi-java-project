@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class Game {
@@ -23,22 +24,35 @@ public class Game {
 	
 	//Constructor
     public Game() {
+    	cards = new Stack<Card>();
     	this.player1 = new Player(_PLAYER1_DEFAULT_NAME);
     	this.player2 = new Player(_PLAYER2_DEFAULT_NAME);
     }
     
     public Game(Player player1, Player player2) {
+    	cards = new Stack<Card>();
     	this.player1 = player1;
     	this.player2 = player2;
     }
     
     //Functions & Methods
     public void start() {
+    	initStack();
         draw();
         play();
     }
 
-    public void draw() {
+    private void initStack() {
+    	Face[] faceArray = Face.values();
+    	Color[] colorArray = Color.values();
+    	for(int i = 0; i < colorArray.length; i ++) {
+    		for(int y = 0; y < faceArray.length; y++) {
+    			cards.push(new Card(faceArray[y], colorArray[i]));
+    		}
+    	}
+	}
+
+	private void draw() {
     	//The cards are shuffled
         Collections.shuffle(cards);
         int index = (int) cards.size() / 2;
@@ -46,7 +60,7 @@ public class Game {
         //32 cards for both players
         for(int i = 0; i < 26; i++) {
         	player1.getStack().push(cards.pop());
-        	player1.getStack().push(cards.pop());
+        	player2.getStack().push(cards.pop());
         }
     }
 
@@ -90,14 +104,14 @@ public class Game {
     	else {
     		//The player 1 has a better card
     		if(player1.getFrontCard().getFace().value > player2.getFrontCard().getFace().value) {
-    			System.out.println("Player 1 wins");
+    			System.out.println("\n" + this.player1.getName() + " WON !");
     			
     			int max = cards.size() - 1;
     			
     			//For each card in the pot we write a message
     			for(int i = 0; i < max; i++) {
     				Card cardWon = cards.pop();
-    				System.out.println("Player 1 gets : " + cardWon.toString());
+    				System.out.println(this.player1.getName() + " gets : " + cardWon.toString());
     				player1.receive(cardWon);
     			}
     			
@@ -105,19 +119,20 @@ public class Game {
     		}
     		//he player 2 has a better card
     		else {
-				System.out.println("Player 2 wins");
+				System.out.println("\n" + this.player2.getName() + " WON !");
     			
     			int max = cards.size() - 1;
     			
     			//For each card in the pot we write a message
     			for(int i = 0; i < max; i++) {
     				Card cardWon = cards.pop();
-    				System.out.println("Player 2 gets : " + cardWon.toString());
+    				System.out.println(this.player2.getName() + " gets : " + cardWon.toString());
     				player2.receive(cardWon);
     			}
     			
     			this.state = BattleState.DONE;
     		}
+    		System.out.println("\n =============================== \n");
     	}
     }
 }
