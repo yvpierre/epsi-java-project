@@ -10,13 +10,11 @@ public class CardStack {
         cards = new ArrayList<Card>();
     }
 
-    public void give(ArrayList<Card> cards, CardStack receiver) {
-        receiver.receive(cards);
+    public void add(Card card) {
+        this.cards.add(card);
     }
 
-    public void receive(ArrayList<Card> cards) {
-        for(Card card : cards) {
-            this.cards.add(card);
-        }
+    public Card getCard(){
+        return cards.remove(0);
     }
 }
