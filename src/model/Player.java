@@ -1,10 +1,10 @@
 package model;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
 
 public class Player {
     String name;
-    Stack<Card> stack;
+    ArrayDeque<Card> queue = new ArrayDeque<Card>();
     Card frontCard;
 
     //Getters & Setters
@@ -16,8 +16,8 @@ public class Player {
         this.name = name;
     }
 
-    public Stack<Card> getStack() {
-        return stack;
+    public ArrayDeque<Card> getStack() {
+        return queue;
     }
 
     public Card getFrontCard() {
@@ -33,15 +33,14 @@ public class Player {
     public Player(String name){
         super();
         this.name = name;
-        stack = new Stack<Card>();
         }
 
     //Methods & Functions
     public void play(){
-        this.frontCard = this.stack.pop();
+        this.frontCard = this.queue.poll();
     }
 
     public void receive(Card card){
-        this.stack.push(card);
+        this.queue.offer(card);
     }
 }
