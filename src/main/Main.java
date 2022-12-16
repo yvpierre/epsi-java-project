@@ -1,7 +1,7 @@
 package main;
 
-import model.Game;
-import model.Player;
+import main.java.model.Game;
+import main.java.model.Player;
 
 public class Main {
 
